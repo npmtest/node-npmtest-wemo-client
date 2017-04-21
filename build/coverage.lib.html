@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-wemo-client/node_modules/wemo-client/client.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-wemo-client">npmtest-wemo-client (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-wemo-client/node_modules/wemo-client/client.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">12.94% <small>(26 / 201)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 45)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">13.54% <small>(26 / 192)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-wemo-client/node_modules/wemo-client/</a> &#187; client.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var util = require('util');
+var http = require('http');
+var xml2js = require('xml2js');
+var entities = require('entities');
+var EventEmitter = require('events').EventEmitter;
+var debug = require('debug')('wemo-client');
+var xmlbuilder = require('xmlbuilder');
+&nbsp;
+<span class="fstat-no" title="function not covered" >function mapCapabilities(capabilityIds, capabilityValues) {</span>
+<span class="cstat-no" title="statement not covered" >  var ids = capabilityIds.split(',');</span>
+<span class="cstat-no" title="statement not covered" >  var values = capabilityValues.split(',');</span>
+<span class="cstat-no" title="statement not covered" >  var result = {};</span>
+<span class="cstat-no" title="statement not covered" >  ids.forEach(<span class="fstat-no" title="function not covered" >function(val, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >    result[val] = values[index];</span>
+  });
+<span class="cstat-no" title="statement not covered" >  return result;</span>
+}
+&nbsp;
+var WemoClient = module.exports = <span class="fstat-no" title="function not covered" >function(config) {</span>
+<span class="cstat-no" title="statement not covered" >  EventEmitter.call(this);</span>
+<span class="cstat-no" title="statement not covered" >  this.host = config.host;</span>
+<span class="cstat-no" title="statement not covered" >  this.port = config.port;</span>
+<span class="cstat-no" title="statement not covered" >  this.deviceType = config.deviceType;</span>
+<span class="cstat-no" title="statement not covered" >  this.UDN = config.UDN;</span>
+<span class="cstat-no" title="statement not covered" >  this.subscriptions = {};</span>
+<span class="cstat-no" title="statement not covered" >  this.callbackURL = config.callbackURL;</span>
+<span class="cstat-no" title="statement not covered" >  this.device = config;</span>
+<span class="cstat-no" title="statement not covered" >  this.error = undefined;</span>
+&nbsp;
+  // Create map of services
+<span class="cstat-no" title="statement not covered" >  config.serviceList.service.forEach(<span class="fstat-no" title="function not covered" >function(service) {</span></span>
+<span class="cstat-no" title="statement not covered" >    this[service.serviceType] = {</span>
+      serviceId: service.serviceId,
+      controlURL: service.controlURL,
+      eventSubURL: service.eventSubURL
+    };
+  }, this.services = {});
+&nbsp;
+  // Transparently subscribe to serviceType events
+  // TODO: Unsubscribe from ServiceType when all listeners have been removed.
+<span class="cstat-no" title="statement not covered" >  this.on('newListener', this._onListenerAdded);</span>
+};
+&nbsp;
+util.inherits(WemoClient, EventEmitter);
+&nbsp;
+WemoClient.EventServices = {
+  insightParams: 'urn:Belkin:service:insight:1',
+  statusChange: 'urn:Belkin:service:bridge:1',
+  attributeList: 'urn:Belkin:service:basicevent:1',
+  binaryState: 'urn:Belkin:service:basicevent:1'
+};
+&nbsp;
+WemoClient.request = <span class="fstat-no" title="function not covered" >function(options, data, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!cb &amp;&amp; typeof data === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >    cb = data;</span>
+<span class="cstat-no" title="statement not covered" >    data = null;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var req = http.request(options, <span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var body = '';</span>
+<span class="cstat-no" title="statement not covered" >    res.setEncoding('utf8');</span>
+<span class="cstat-no" title="statement not covered" >    res.on('data', <span class="fstat-no" title="function not covered" >function(chunk) {</span></span>
+<span class="cstat-no" title="statement not covered" >      body += chunk;</span>
+    });
+<span class="cstat-no" title="statement not covered" >    res.on('end', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (res.statusCode === 200) {</span>
+<span class="cstat-no" title="statement not covered" >        xml2js.parseString(body, { explicitArray: false }, cb);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        cb(new Error('HTTP ' + res.statusCode + ': ' + body));</span>
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    res.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >      debug('Error on http.request.res:', err);</span>
+<span class="cstat-no" title="statement not covered" >      cb(err);</span>
+    });
+  });
+<span class="cstat-no" title="statement not covered" >  req.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >    debug('Error on http.request.req:', err);</span>
+<span class="cstat-no" title="statement not covered" >    cb(err);</span>
+  });
+<span class="cstat-no" title="statement not covered" >  if (data) {</span>
+<span class="cstat-no" title="statement not covered" >    req.write(data);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  req.end();</span>
+};
+&nbsp;
+WemoClient.prototype.soapAction = <span class="fstat-no" title="function not covered" >function(serviceType, action, body, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  cb = cb || <span class="fstat-no" title="function not covered" >function() {</span>};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var xml = xmlbuilder.create('s:Envelope', {</span>
+    version: '1.0',
+    encoding: 'utf-8',
+    allowEmpty: true
+  })
+  .att('xmlns:s', 'http://schemas.xmlsoap.org/soap/envelope/')
+  .att('s:encodingStyle', 'http://schemas.xmlsoap.org/soap/encoding/')
+  .ele('s:Body')
+  .ele('u:' + action)
+  .att('xmlns:u', serviceType);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var payload = (body ? xml.ele(body) : xml).end();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var options = {</span>
+    host: this.host,
+    port: this.port,
+    path: this.services[serviceType].controlURL,
+    method: 'POST',
+    headers: {
+      'SOAPACTION': '"' + serviceType + '#' + action + '"',
+      'Content-Type': 'text/xml; charset="utf-8"'
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  WemoClient.request(options, payload, <span class="fstat-no" title="function not covered" >function(err, response) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+<span class="cstat-no" title="statement not covered" >      this.error = err.code;</span>
+<span class="cstat-no" title="statement not covered" >      this.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered" >      return cb(err);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    debug('%s Response: ', action, response);</span>
+<span class="cstat-no" title="statement not covered" >    cb(null, response &amp;&amp; response['s:Envelope']['s:Body']['u:' + action + 'Response']);</span>
+  }.bind(this));
+};
+&nbsp;
+WemoClient.prototype.getEndDevices = <span class="fstat-no" title="function not covered" >function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var parseDeviceInfo = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var device = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (data.GroupID) {</span>
+      // treat device group as it was a single device
+<span class="cstat-no" title="statement not covered" >      device.friendlyName = data.GroupName[0];</span>
+<span class="cstat-no" title="statement not covered" >      device.deviceId = data.GroupID[0];</span>
+<span class="cstat-no" title="statement not covered" >      device.capabilities = mapCapabilities(</span>
+        data.GroupCapabilityIDs[0],
+        data.GroupCapabilityValues[0]
+      );
+    } else {
+      // single device
+<span class="cstat-no" title="statement not covered" >      device.friendlyName = data.FriendlyName[0];</span>
+<span class="cstat-no" title="statement not covered" >      device.deviceId = data.DeviceID[0];</span>
+<span class="cstat-no" title="statement not covered" >      device.capabilities = mapCapabilities(</span>
+        data.CapabilityIDs[0],
+        data.CurrentState[0]
+      );
+    }
+&nbsp;
+    // set device type
+<span class="cstat-no" title="statement not covered" >    if (device.capabilities.hasOwnProperty('10008')) {</span>
+<span class="cstat-no" title="statement not covered" >      device.deviceType = 'dimmableLight';</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (device.capabilities.hasOwnProperty('10300')) {</span>
+<span class="cstat-no" title="statement not covered" >      device.deviceType = 'colorLight';</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return device;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var parseResponse = <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    debug('endDevices raw data', data);</span>
+<span class="cstat-no" title="statement not covered" >    var endDevices = [];</span>
+<span class="cstat-no" title="statement not covered" >    xml2js.parseString(data.DeviceLists, <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      var deviceInfos = result.DeviceLists.DeviceList[0].DeviceInfos[0].DeviceInfo;</span>
+<span class="cstat-no" title="statement not covered" >      if (deviceInfos) {</span>
+<span class="cstat-no" title="statement not covered" >        Array.prototype.push.apply(endDevices, deviceInfos.map(parseDeviceInfo));</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (result.DeviceLists.DeviceList[0].GroupInfos) {</span>
+<span class="cstat-no" title="statement not covered" >        var groupInfos = result.DeviceLists.DeviceList[0].GroupInfos[0].GroupInfo;</span>
+<span class="cstat-no" title="statement not covered" >        Array.prototype.push.apply(endDevices, groupInfos.map(parseDeviceInfo));</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, endDevices);</span>
+    });
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:bridge:1', 'GetEndDevices', {</span>
+    DevUDN: this.UDN,
+    ReqListType: 'PAIRED_LIST'
+  }, parseResponse);
+};
+&nbsp;
+WemoClient.prototype.setDeviceStatus = <span class="fstat-no" title="function not covered" >function(deviceId, capability, value, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var deviceStatusList = xmlbuilder.create('DeviceStatus', {</span>
+    version: '1.0',
+    encoding: 'utf-8'
+  }).ele({
+    IsGroupAction: (deviceId.length === 10) ? 'YES' : 'NO',
+    DeviceID: deviceId,
+    CapabilityID: capability,
+    CapabilityValue: value
+  }).end();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:bridge:1', 'SetDeviceStatus', {</span>
+    DeviceStatusList: {
+      '#text': deviceStatusList
+    }
+  }, cb);
+};
+&nbsp;
+WemoClient.prototype.getDeviceStatus = <span class="fstat-no" title="function not covered" >function(deviceId, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var parseResponse = <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    xml2js.parseString(data.DeviceStatusList, { explicitArray: false }, <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      var deviceStatus = result['DeviceStatusList']['DeviceStatus'];</span>
+<span class="cstat-no" title="statement not covered" >      var capabilities = mapCapabilities(deviceStatus.CapabilityID, deviceStatus.CapabilityValue);</span>
+<span class="cstat-no" title="statement not covered" >      cb(null, capabilities);</span>
+    });
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:bridge:1', 'GetDeviceStatus', {</span>
+    DeviceIDs: deviceId
+  }, parseResponse);
+};
+&nbsp;
+WemoClient.prototype.setLightColor = <span class="fstat-no" title="function not covered" >function(deviceId, red, green, blue, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  var color = WemoClient.rgb2xy(red, green, blue);</span>
+<span class="cstat-no" title="statement not covered" >  this.setDeviceStatus(deviceId, 10300, color.join(':') + ':0', cb);</span>
+};
+&nbsp;
+WemoClient.prototype.setBinaryState = <span class="fstat-no" title="function not covered" >function(value, cb) {</span>
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:basicevent:1', 'SetBinaryState', {</span>
+    BinaryState: value
+  }, cb);
+};
+&nbsp;
+WemoClient.prototype.getBinaryState = <span class="fstat-no" title="function not covered" >function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:basicevent:1', 'GetBinaryState', null, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    cb(null, data.BinaryState);</span>
+  });
+};
+&nbsp;
+WemoClient.prototype.getAttributes = <span class="fstat-no" title="function not covered" >function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:deviceevent:1', 'GetAttributes', null, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >    var xml = '&lt;attributeList&gt;' + entities.decodeXML(data.attributeList) + '&lt;/attributeList&gt;';</span>
+<span class="cstat-no" title="statement not covered" >    xml2js.parseString(xml, { explicitArray: false }, <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered" >      var attributes = {};</span>
+<span class="cstat-no" title="statement not covered" >      for (var key in result.attributeList.attribute) {</span>
+<span class="cstat-no" title="statement not covered" >        var attribute = result.attributeList.attribute[key];</span>
+<span class="cstat-no" title="statement not covered" >        attributes[attribute.name] = attribute.value;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      cb(null, attributes);</span>
+    });
+  });
+};
+&nbsp;
+WemoClient.prototype.getInsightParams = <span class="fstat-no" title="function not covered" >function(cb) {</span>
+<span class="cstat-no" title="statement not covered" >  this.soapAction('urn:Belkin:service:insight:1', 'GetInsightParams', null, <span class="fstat-no" title="function not covered" >function(err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >return cb(err);</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var params = this._parseInsightParams(data.InsightParams);</span>
+<span class="cstat-no" title="statement not covered" >    cb(null, params.binaryState, params.instantPower, params.insightParams);</span>
+  }.bind(this));
+};
+&nbsp;
+WemoClient.prototype._parseInsightParams = <span class="fstat-no" title="function not covered" >function(paramsStr) {</span>
+<span class="cstat-no" title="statement not covered" >  var params = paramsStr.split('|');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    binaryState: params[0],
+    instantPower: params[7],
+    insightParams: {
+      ONSince: params[1],
+      OnFor: params[2],
+      TodayONTime: params[3],
+      TodayConsumed: params[8]  // power consumer today (mW per minute)
+    }
+  };
+};
+&nbsp;
+WemoClient.prototype._onListenerAdded = <span class="fstat-no" title="function not covered" >function(eventName) {</span>
+<span class="cstat-no" title="statement not covered" >  var serviceType = WemoClient.EventServices[eventName];</span>
+<span class="cstat-no" title="statement not covered" >  if (serviceType &amp;&amp; this.services[serviceType]) {</span>
+<span class="cstat-no" title="statement not covered" >    this._subscribe(serviceType);</span>
+  }
+};
+&nbsp;
+WemoClient.prototype._subscribe = <span class="fstat-no" title="function not covered" >function(serviceType) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!this.services[serviceType]) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Service ' + serviceType + ' not supported by ' + this.UDN);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (!this.callbackURL) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Can not subscribe without callbackURL');</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (this.subscriptions[serviceType] &amp;&amp; this.subscriptions[serviceType] === 'PENDING') {</span>
+<span class="cstat-no" title="statement not covered" >    debug('subscription still pending');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var options = {</span>
+    host: this.host,
+    port: this.port,
+    path: this.services[serviceType].eventSubURL,
+    method: 'SUBSCRIBE',
+    headers: {
+      TIMEOUT: 'Second-300'
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!this.subscriptions[serviceType]) {</span>
+    // Initial subscription
+<span class="cstat-no" title="statement not covered" >    this.subscriptions[serviceType] = 'PENDING';</span>
+<span class="cstat-no" title="statement not covered" >    debug('Initial subscription - Device: %s, Service: %s', this.UDN, serviceType);</span>
+<span class="cstat-no" title="statement not covered" >    options.headers.CALLBACK = '&lt;' + this.callbackURL + '/' + this.UDN + '&gt;';</span>
+<span class="cstat-no" title="statement not covered" >    options.headers.NT = 'upnp:event';</span>
+  } else {
+    // Subscription renewal
+<span class="cstat-no" title="statement not covered" >    debug('Renewing subscription - Device: %s, Service: %s', this.UDN, serviceType);</span>
+<span class="cstat-no" title="statement not covered" >    options.headers.SID = this.subscriptions[serviceType];</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var req = http.request(options, <span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (res.statusCode === 200) {</span>
+      // Renew after 150 seconds
+<span class="cstat-no" title="statement not covered" >      this.subscriptions[serviceType] = res.headers.sid;</span>
+<span class="cstat-no" title="statement not covered" >      setTimeout(this._subscribe.bind(this), 150 * 1000, serviceType);</span>
+    } else {
+      // Try to recover from failed subscription after 2 seconds
+<span class="cstat-no" title="statement not covered" >      debug('Subscription request failed with HTTP %s', res.statusCode);</span>
+<span class="cstat-no" title="statement not covered" >      this.subscriptions[serviceType] = null;</span>
+<span class="cstat-no" title="statement not covered" >      setTimeout(this._subscribe.bind(this), 2000, serviceType);</span>
+    }
+  }.bind(this));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  req.on('error', <span class="fstat-no" title="function not covered" >function(err) {</span></span>
+<span class="cstat-no" title="statement not covered" >    debug('Subscription error: %s - Device: %s, Service: %s', err.code, this.UDN, serviceType);</span>
+<span class="cstat-no" title="statement not covered" >    this.subscriptions[serviceType] = null;</span>
+<span class="cstat-no" title="statement not covered" >    this.error = err.code;</span>
+<span class="cstat-no" title="statement not covered" >    this.emit('error', err);</span>
+  }.bind(this));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  req.end();</span>
+};
+&nbsp;
+WemoClient.prototype.handleCallback = <span class="fstat-no" title="function not covered" >function(body) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var handler = {</span>
+    BinaryState: <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('binaryState', data.substring(0, 1));</span>
+    },
+    StatusChange: <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >      xml2js.parseString(data, { explicitArray: false }, <span class="fstat-no" title="function not covered" >function(err, xml) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!err) {</span>
+<span class="cstat-no" title="statement not covered" >          self.emit('statusChange',</span>
+            xml.StateEvent.DeviceID._,
+            xml.StateEvent.CapabilityId,
+            xml.StateEvent.Value
+          );
+        }
+      });
+    },
+    InsightParams: <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >      var params = this._parseInsightParams(data);</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('insightParams', params.binaryState, params.instantPower, params.insightParams);</span>
+    }.bind(this),
+    attributeList: <span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >      var xml = '&lt;attributeList&gt;' + entities.decodeXML(data) + '&lt;/attributeList&gt;';</span>
+<span class="cstat-no" title="statement not covered" >      xml2js.parseString(xml, { explicitArray: true }, <span class="fstat-no" title="function not covered" >function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!err) {</span>
+          // In order to keep the existing event signature this
+          // triggers an event for every attribute changed.
+<span class="cstat-no" title="statement not covered" >          result.attributeList.attribute.forEach(<span class="fstat-no" title="function not covered" >function(attribute) {</span></span>
+<span class="cstat-no" title="statement not covered" >            self.emit('attributeList',</span>
+              attribute.name[0],
+              attribute.value[0],
+              attribute.prevalue[0],
+              attribute.ts[0]
+            );
+          });
+        }
+      });
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  xml2js.parseString(body, { explicitArray: false }, <span class="fstat-no" title="function not covered" >function(err, xml) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (err) <span class="cstat-no" title="statement not covered" >throw err;</span></span>
+<span class="cstat-no" title="statement not covered" >    for (var prop in xml['e:propertyset']['e:property']) {</span>
+<span class="cstat-no" title="statement not covered" >      if (handler.hasOwnProperty(prop)) {</span>
+<span class="cstat-no" title="statement not covered" >        handler[prop](xml['e:propertyset']['e:property'][prop]);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        debug('Unhandled Event: %s', prop);</span>
+      }
+    }
+  });
+};
+&nbsp;
+WemoClient.rgb2xy = <span class="fstat-no" title="function not covered" >function(r, g, b) {</span>
+  // Based on: https://github.com/aleroddepaz/pyhue/blob/master/src/pyhue.py
+<span class="cstat-no" title="statement not covered" >  var X = (0.545053 * r) + (0.357580 * g) + (0.180423 * b);</span>
+<span class="cstat-no" title="statement not covered" >  var Y = (0.212671 * r) + (0.715160 * g) + (0.072169 * b);</span>
+<span class="cstat-no" title="statement not covered" >  var Z = (0.019334 * r) + (0.119193 * g) + (0.950227 * b);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var x = X / (X + Y + Z);</span>
+<span class="cstat-no" title="statement not covered" >  var y = Y / (X + Y + Z);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return [</span>
+    Math.round(x * 65535),
+    Math.round(y * 65535)
+  ];
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 08:04:23 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
