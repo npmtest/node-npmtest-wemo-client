@@ -1,1 +1,39 @@
-{     "devDependencies": {         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-wemo-client",     "homepage": "https://github.com/npmtest/node-npmtest-wemo-client",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-wemo-client.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### basic test coverage for  [wemo-client (v0.11.2)](https://github.com/timonreinhard/wemo-client)  [![npm package](https://img.shields.io/npm/v/npmtest-wemo-client.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-wemo-client) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-wemo-client.svg)](https://travis-ci.org/npmtest/node-npmtest-wemo-client)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-wemo-client",
+    "keywords": [
+        "coverage",
+        "test",
+        "wemo-client"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_wemo_client.js",
+    "name": "npmtest-wemo-client",
+    "nameAlias": "npmtest_wemo_client",
+    "nameOriginal": "npmtest-wemo-client",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-wemo-client.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}
