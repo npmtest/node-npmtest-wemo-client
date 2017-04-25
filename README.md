@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-wemo-client/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-wemo-client/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-wemo-client/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-wemo-client/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-wemo-client/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-wemo-client/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-wemo-client/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-wemo-client/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-wemo-client/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-wemo-client/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-wemo-client/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-wemo-client/build/coverage.html/index.html)
 
@@ -35,36 +35,12 @@
 ```json
 
 {
-    "name": "wemo-client",
-    "version": "0.11.2",
-    "description": "Client library for interacting with Belkin Wemo devices",
-    "main": "index.js",
-    "directories": {
-        "examples": "./examples"
+    "author": {
+        "name": "Timon Reinhard"
     },
-    "scripts": {
-        "test": "istanbul test _mocha",
-        "test-cov": "istanbul cover _mocha",
-        "test-e2e": "mocha ./test-e2e",
-        "lint": "eslint *.js",
-        "prepush": "npm run lint && npm test",
-        "postmerge": "npm install",
-        "preversion": "npm test",
-        "postversion": "git push && git push --tags"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/timonreinhard/wemo-client.git"
-    },
-    "author": "Timon Reinhard",
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/timonreinhard/wemo-client/issues"
     },
-    "homepage": "https://github.com/timonreinhard/wemo-client",
-    "keywords": [
-        "wemo"
-    ],
     "dependencies": {
         "debug": "~2.2.0",
         "entities": "^1.1.1",
@@ -72,6 +48,7 @@
         "xml2js": "~0.4.16",
         "xmlbuilder": "^8.2.2"
     },
+    "description": "Client library for interacting with Belkin Wemo devices",
     "devDependencies": {
         "codeclimate-test-reporter": "^0.1.1",
         "eslint": "^3.2.2",
@@ -80,7 +57,44 @@
         "mitm": "^1.3.0",
         "mocha": "^3.0.2",
         "must": "^0.13.2"
-    }
+    },
+    "directories": {
+        "examples": "./examples"
+    },
+    "dist": {
+        "shasum": "b36efba5fcf98ed7ef7a07c8c0cdc02428442154",
+        "tarball": "https://registry.npmjs.org/wemo-client/-/wemo-client-0.11.2.tgz"
+    },
+    "gitHead": "c8980e826ab5293affb94e9ee85dd2fd5f6bf9ca",
+    "homepage": "https://github.com/timonreinhard/wemo-client",
+    "keywords": [
+        "wemo"
+    ],
+    "license": "MIT",
+    "main": "index.js",
+    "maintainers": [
+        {
+            "name": "timonreinhard"
+        }
+    ],
+    "name": "wemo-client",
+    "optionalDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/timonreinhard/wemo-client.git"
+    },
+    "scripts": {
+        "lint": "eslint *.js",
+        "postmerge": "npm install",
+        "postversion": "git push && git push --tags",
+        "prepush": "npm run lint && npm test",
+        "preversion": "npm test",
+        "test": "istanbul test _mocha",
+        "test-cov": "istanbul cover _mocha",
+        "test-e2e": "mocha ./test-e2e"
+    },
+    "version": "0.11.2",
+    "bin": {}
 }
 ```
 
